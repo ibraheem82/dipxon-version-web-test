@@ -24,17 +24,14 @@ STATIC_DIR = BASE_DIR / 'static'
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8s%q93n#vh+qf##=rj2#o&p5$xw%fn29jd=ts&xbs=63+o(fhv'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False").lower == "true"
 
-ALLOWED_HOSTS = ['*', 'https://8000-ibraheem82-dipxonecomm-b7ljzni6fp2.ws-eu114.gitpod.io']
-# ALLOWED_HOSTS = ['dipxon-e-comm-production.up.railway.app', '127.0.0.1']
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 CSRF_TRUSTED_ORIGINS = [
-    # 'https://dipxon-e-comm-production.up.railway.app',
-    # 'http://127.0.0.1:8000'
     'https://8000-ibraheem82-dipxonecomm-b7ljzni6fp2.ws-eu114.gitpod.io'
     '*'
 ]
@@ -103,8 +100,8 @@ DATABASES = {
     }
 }
 
-
-DATABASES["default"] = dj_database_url.parse("postgres://dipxonfashion_user:eiMsMQRxD6AYQSh5iJT0VioelQRkLz4W@dpg-cphgptgl6cac73a0reng-a.oregon-postgres.render.com/dipxonfashion")
+database_url = os.environ.get("DATABASE_URL")
+DATABASES["default"] = dj_database_url.parse(database_url)
 
 
 # Password validation
