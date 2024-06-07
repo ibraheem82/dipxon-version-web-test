@@ -40,6 +40,8 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 
+# postgres://dipxonfashion_user:eiMsMQRxD6AYQSh5iJT0VioelQRkLz4W@dpg-cphgptgl6cac73a0reng-a.oregon-postgres.render.com/dipxonfashion
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -55,7 +57,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'taggit',
     'ckeditor',
-    
+
     # Payment integrations
     "paypal.standard.ipn",
 ]
@@ -192,7 +194,7 @@ JAZZMIN_SETTINGS = {
     "copyright": "DipXon Drips 🛒",
 
     # List of model admins to search from the search bar, search bar omitted if excluded
-    # If you want to use a single search field you dont need to use a list, you can use a simple string 
+    # If you want to use a single search field you dont need to use a list, you can use a simple string
     "search_model": ["dipapp.Product"],
 
     # Field name on user model that contains avatar ImageField/URLField/Charfield or a callable that receives the user
@@ -242,7 +244,7 @@ JAZZMIN_SETTINGS = {
     # Hide these models when generating side menu (e.g auth.user)
     "hide_models": [],
 
-   
+
     "icons": {
         "auth": "fas fa-users-cog",
         "auth.user": "fas fa-user",
