@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block title %}Product Categories{% endblock %}
+{% load static %}
+{% block content %}
+
+
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">   
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <h3> Categories</h3>
+                        <ul>
+                            <li><a href="{% url "home" %}">home</a></li>
+                            <li>category</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>         
+    </div>
+    <!--breadcrumbs area end-->
+    
+    <!--shop  area start-->
+    <div class="shop_area shop_fullwidth mb-80">
+        <div class="container">
+            <div class="row">
+        <div class="col-12">
+            <!--shop wrapper start-->
+            
+            <!--shop toolbar start-->
+            <div class="shop_toolbar_wrapper">
+                <div class="shop_toolbar_btn">
+                    <button data-role="grid_4" type="button"  class="active  btn-grid-4" data-bs-toggle="tooltip" title="4"></button>
+                    <button data-role="grid_3" type="button" class=" btn-grid-3" data-bs-toggle="tooltip" title="3"></button>
+                    <button data-role="grid_list" type="button"  class="btn-list" data-bs-toggle="tooltip" title="List"></button>
+                </div>
+                <div class=" niceselect_option">
+                    <form class="select_option" action="#">
+                        <select name="orderby" id="short">
+
+                            <option selected value="1">Sort by average rating</option>
+                            <option  value="2">Sort by popularity</option>
+                            <option value="3">Sort by newness</option>
+                            <option value="4">Sort by price: low to high</option>
+                            <option value="5">Sort by price: high to low</option>
+                            <option value="6">Product Name: Z</option>
+                        </select>
+                    </form>
+                </div>
+                <div class="page_amount">
+                    <p>Showing 1–12 of 21 results</p>
+                </div>
+            </div>
+            <div class="row">
+                <h3>
+                    {{ categories.count }}
+                        {% if categories.count == 1 %}
+                        Category
+                        {% else %}
+                        Categories
+                        {% endif %}
+                    </h3>
+                <hr>
+                {% for c in categories %}
+                    <div class="col-lg-3">
+                        <article class="single_categories">
+                            <figure>
+                    <div class="categories_thumb">
+                        <a href="{% url "category-product-list" c.cid %}">
+                            <img src="{{c.image.url}}"
+                             alt="{{c.image.url}}">
+                        </a>
+                    </div>
+                                <figcaption class="categories_content">
+                                    <h4 class="product_name"><a href="{% url "category-product-list" c.cid %}">{{c.title}}</a></h4>
+                                    <div class="product_collection">
+                                    <!-- Counting products that is associated to each category -->
+                                        <!-- <p>{{ c.product_set.all|length }} Products</p> -->
+                                        <!-- OR SINCE YOU HAVE SET THE RELATED NAME OT category in the model -->
+                                        <p>{{ c.category.count }} Product{{ c.category.count|pluralize }}</p>
+                                        <a href="{% url "category-product-list" c.cid %}">+ Shop Collection</a>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    </div>
+                    {% endfor %}
+                    
+                
+            </div> 
+            <!-- <div class="shop_toolbar t_bottom">
+                <div class="pagination">
+                    <ul>
+                        <li class="current">1</li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li class="next"><a href="#">next</a></li>
+                        <li><a href="#">>></a></li>
+                    </ul>
+                </div>
+            </div> -->
+            <!--shop toolbar end-->
+            <!--shop wrapper end-->
+        </div>
+            </div>
+        </div>
+    </div>
+    <!--shop  area end-->
+
+
+
+{% endblock  %}

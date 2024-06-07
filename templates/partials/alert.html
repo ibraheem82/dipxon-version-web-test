@@ -1,0 +1,24 @@
+
+    {% if messages %}
+  <script>
+    function getIconClass(tags) {
+        const iconMap = {
+          success: 'success',
+          error: 'error',
+          warning: 'warning',
+         
+        };
+        return iconMap[tags] || 'info';  // Use 'info' as a default
+      }
+    {% for message in messages %}
+    swal({
+        icon: getIconClass('{{ message.tags }}'),
+        text: "{{ message }}",
+        title: "{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Error: {% endif %}{{ message }}",
+        // Customize other options as needed
+      });
+    {% endfor %}
+  </script>
+{% endif %}
+
+ 

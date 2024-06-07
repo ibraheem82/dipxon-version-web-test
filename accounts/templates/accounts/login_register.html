@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% block title %}Auth🔐->Page{% endblock %}
+{% load static %}
+{% block content %}
+
+
+ <!--breadcrumbs area start-->
+ <div class="breadcrumbs_area">
+    <div class="container">   
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    {% if page == 'register' %}<h3>Register</h3>{% else %}<h3>Login</h3>{% endif %}
+                    <ul>
+                        <li><a href="index.html">home</a></li>
+                        {% if page == 'register' %}<li>Register</li>{% else %}
+                        <li>Login</li>{% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>         
+</div>
+<!--breadcrumbs area end-->
+
+
+            <!--login area start-->
+
+
+            <!-- * NEW LOGIN PAGE START HERE -->
+
+                <!-- customer login start -->
+                {% if page == 'login' %}
+            <div class="customer_login">
+                <div class="container d-flex justify-content-center">
+                
+                    <!--login area start-->
+                        <div class="col-lg-6 col-md-6">
+                            <div class="account_form">
+                                <h2 class="text-center">login</h2>
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <p>   
+                                        <label>Email <span>*</span></label>
+                                        <input type="email" name="email" required placeholder="Email">
+                                    </p>
+                                    <p>   
+                                        <label>Passwords <span>*</span></label>
+                                        <input type="password" name="password" required placeholder="Password">
+                                    </p>   
+                                    <div class="login_submit">
+                                     <a href="#">Lost your password?</a> 
+                                        <label for="remember">
+                                            <input id="remember" type="checkbox">
+                                            Remember me
+                                        </label> 
+                                        <button type="submit" name="submit">login</button>
+                                        
+                                    </div>
+
+                                </form>
+                            </div>    
+                        </div>
+                        <!--login area start-->
+                </div>    
+            </div>
+            <!-- customer login end -->
+            {% endif %}
+
+    <!-- * NEW LOGIN PAGE STOPS HERE -->
+
+
+
+
+            <!-- ** NEW REGISTER PAGE START HERE -->
+            {% if page == 'register' %}
+            <div class="customer_login">
+                {% if form.errors %}
+                    <div class="alert alert-danger text-center">
+                        <span>{{form.errors}}</span>
+                    </div>
+                    {% endif %}
+                <div class="container d-flex justify-content-center">
+                    
+                <!--register area start-->
+                <div class="col-lg-6 col-md-6 ">
+                            <div class="account_form register">
+                                <h2 class="text-center">Register Now. Dress Like You Mean It</h2>
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    
+                                    <p>   
+
+                                        {{form.username}}
+                                     </p>
+
+                                     <p>   
+
+                                        {{form.email}}
+                                     </p>
+                                     <p>   
+
+                                        {{form.password1}}
+                                     </p>
+                                     <p>   
+
+                                        {{form.password2}}
+                                     </p>
+                                     
+                                    <div class="login_submit">
+                                        <a href="{% url "login" %}">Login</a> 
+
+                                        <button type="submit" name="submit">Register</button>
+                                    </div>
+                                </form>
+                            </div>    
+                        </div>
+                        <!--register area end-->
+        
+                </div>    
+            </div>
+            {% endif %}
+
+            <!-- ** NEW REGISTER PAGE STOPS HERE -->
+<!-- customer login end -->
+   
+{% endblock %}

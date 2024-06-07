@@ -1,0 +1,13 @@
+category/__pycache__
+category/migrations
+dipapp/__pycache__
+dipapp/migrations
+carts/migrations
+carts/__pycache__
+dipxon/__pycache__
+ibraheem
+app-content.txt
+accounts/migrations
+accounts/__pycache__
+sent_emails
+db.sqlite3

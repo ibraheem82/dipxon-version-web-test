@@ -1,0 +1,144 @@
+
+<!doctype html>
+{% load static %}
+{% load humanize %}
+<html class="no-js" lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %} {% endblock  %}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static "assets/img/favicon.ico" %}">
+    
+    <!-- CSS 
+    ========================= -->
+    <!--bootstrap min css-->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <!--owl carousel min css-->
+    <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %}">
+    <!--slick min css-->
+    <link rel="stylesheet" href="{% static 'assets/css/slick.css' %}">
+    <!--magnific popup min css-->
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+    <!--font awesome css-->
+    <link rel="stylesheet" href="{% static 'assets/css/font.awesome.css' %}">
+    <!--ionicons css-->
+    <link rel="stylesheet" href="{% static 'assets/css/ionicons.min.css' %}">
+    <!--7 stroke icons css-->
+    <link rel="stylesheet" href="{% static 'assets/css/pe-icon-7-stroke.css' %}">
+    <!--animate css-->
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <!--jquery ui min css-->
+    <link rel="stylesheet" href="{% static 'assets/css/jquery-ui.min.css' %}">
+    <!--plugins css-->
+    <link rel="stylesheet" href="{% static 'assets/css/plugins.css' %}">
+    
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+    <!--modernizr min js here-->
+    <script src="{% static 'assets/js/vendor/modernizr-3.7.1.min.js' %}"></script>
+</head>
+
+<body>
+  
+   
+    {% include 'partials/header.html' %}
+    {% include 'partials/alert.html' %}
+    {% block content %}
+
+        
+        {% endblock  %}
+
+        <!-- FOOTER -->
+
+
+        {% comment %} {% include 'partials/newsletter.html' %} {% endcomment %}
+        {% include 'partials/footer.html' %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+<!-- JS
+============================================ -->
+{% comment %} <script>
+    
+    (function(d, w, c) {
+        w.BrevoConversationsID = '6617a90b625969764b16a585';
+        w[c] = w[c] || function() {
+            (w[c].q = w[c].q || []).push(arguments);
+        };
+        var s = d.createElement('script');
+        s.async = true;
+        s.src = 'https://conversations-widget.brevo.com/brevo-conversations.js';
+        if (d.head) d.head.appendChild(s);
+    })(document, window, 'BrevoConversations');
+</script> {% endcomment %}
+<!-- /Brevo Conversations {/literal} -->
+
+<!--jquery min js-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script src="{% static 'assets/js/vendor/jquery-3.4.1.min.js' %}"></script>
+<!--popper min js-->
+<script src="{% static 'assets/js/popper.js' %}"></script>
+<!--bootstrap min js-->
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+<!--owl carousel min js-->
+<script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+<!--slick min js-->
+<script src="{% static 'assets/js/slick.min.js' %}"></script>
+<!--magnific popup min js-->
+<script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+<!--jquery countdown min js-->
+<script src="{% static 'assets/js/jquery.countdown.js' %}"></script>
+<!--jquery ui min js-->
+<script src="{% static 'assets/js/jquery.ui.js' %}"></script>
+<!--jquery elevatezoom min js-->
+<script src="{% static 'assets/js/jquery.elevatezoom.js' %}"></script>
+<!--isotope packaged min js-->
+<script src="{% static 'assets/js/isotope.pkgd.min.js' %}"></script>
+<!-- Plugins JS -->
+<script src="{% static 'assets/js/plugins.js' %}"></script>
+
+<!-- Main JS -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+
+<script src="{% static 'assets/js/main.js' %}"></script>
+<script src="{% static 'assets/js/function.js' %}"></script>
+
+
+
+</body>
+
+</html>
