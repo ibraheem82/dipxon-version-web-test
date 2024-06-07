@@ -40,7 +40,7 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 
-# postgres://dipxonfashion_user:eiMsMQRxD6AYQSh5iJT0VioelQRkLz4W@dpg-cphgptgl6cac73a0reng-a.oregon-postgres.render.com/dipxonfashion
+#
 
 # Application definition
 
@@ -104,6 +104,7 @@ DATABASES = {
 }
 
 
+DATABASES["default"] = dj_database_url.parse("postgres://dipxonfashion_user:eiMsMQRxD6AYQSh5iJT0VioelQRkLz4W@dpg-cphgptgl6cac73a0reng-a.oregon-postgres.render.com/dipxonfashion")
 
 
 # Password validation

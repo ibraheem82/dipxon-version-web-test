@@ -47,22 +47,22 @@ class Category(models.Model):
     cid         = ShortUUIDField(unique = True, length = 10, max_length = 30, prefix      ="cat", alphabet="abcbefghi12345")
     title       = models.CharField(max_length = 100, default="Fashion")
     image       = models.ImageField(upload_to="category", default="category.jpg")
-    
-    
+
+
     class Meta:
         verbose_name_plural = "Categories"
-        
+
     def category_image(self):
         return mark_safe('<img src ="%s" width="50" height="50" />' % (self.image.url))
 
     def __str__(self):
         return self.title
-    
-    
+
+
 class Tags(models.Model):
     pass
-        
-        
+
+
 class Vendor(models.Model):
     vid                 = ShortUUIDField(unique = True,
                                          length = 10,
@@ -73,10 +73,10 @@ class Vendor(models.Model):
     # description         = models.TextField(null = True, blank = True, default="Good company")
     description         = RichTextUploadingField(null = True, blank = True, default="Good company")
     address             = models.CharField(max_length = 100, default = "12 Sadiku street Ilasamaja lagos state")
-    contact             = models.CharField(max_length = 100, 
+    contact             = models.CharField(max_length = 100,
                                            default = "+234 8102673964")
     chat_resp_time      = models.CharField(max_length = 100,
-                                           default = "100", 
+                                           default = "100",
                                            null = True,
                                            blank = True)
     shipping_on_time    = models.CharField(max_length = 100,
@@ -87,7 +87,7 @@ class Vendor(models.Model):
                                            default="100",
                                            null = True,
                                            blank = True)
-    days_return         = models.CharField(max_length = 100, 
+    days_return         = models.CharField(max_length = 100,
                                            default = "100",
                                            null = True,
                                            blank = True)
@@ -96,27 +96,27 @@ class Vendor(models.Model):
                                        null = True,
                                        blank = True)
     user                = models.ForeignKey(User,
-                                            on_delete = models.SET_NULL, 
+                                            on_delete = models.SET_NULL,
                                             null = True)
-    
+
     class Meta:
         verbose_name_plural = "Vendors"
-    
+
     def vendor_image(self):
         return mark_safe('<img src ="%s" width="50" height="50" />' % (self.image.url))
 
     def __str__(self):
         return self.title
-    
+
 
 
 class Product(models.Model):
-    pid                 = ShortUUIDField(unique = True, 
+    pid                 = ShortUUIDField(unique = True,
                                          length = 10,
-                                         max_length = 20, 
+                                         max_length = 20,
                                          alphabet="abcbefghi12345")
-    user                = models.ForeignKey(User, 
-                                            on_delete = models.SET_NULL, 
+    user                = models.ForeignKey(User,
+                                            on_delete = models.SET_NULL,
                                             null = True)
     category            = models.ForeignKey(Category,
                                             on_delete = models.SET_NULL,
@@ -124,29 +124,25 @@ class Product(models.Model):
     vendor            = models.ForeignKey(Vendor,
                                             on_delete = models.SET_NULL,
                                             null = True)
-    title               = models.CharField(max_length = 100, 
+    title               = models.CharField(max_length = 100,
                                            default = "new cloth")
     image               = models.ImageField(upload_to=user_directory_path,
                                             default="product.jpg")
     description         = RichTextUploadingField(null = True,
                                            blank = True,
                                            default = "Porduct")
-    
-    price               = models.DecimalField(max_digits=9999999999999999, 
-                                              decimal_places = 2,
-                                              default = "1.99")
-    
-    old_price           = models.DecimalField(max_digits=9999999999999999, 
-                                              decimal_places = 2,
-                                              default = "2.99")
+
+    price = models.DecimalField(max_digits=10, decimal_places=2, default="1.99")
+    old_price = models.DecimalField(max_digits=10, decimal_places=2, default="2.99")
+
     specifications      = RichTextUploadingField(null = True,
                                            blank = True)
-    type               = models.CharField(max_length = 100, 
-                                           default = "Silk-blend", 
+    type               = models.CharField(max_length = 100,
+                                           default = "Silk-blend",
                                            null = True,
                                            blank = True)
-    stock_count               = models.CharField(max_length = 100, 
-                                           default = "10", 
+    stock_count               = models.CharField(max_length = 100,
+                                           default = "10",
                                            null = True,
                                            blank = True)
     # tags = models.ForeignKey(Tags, on_delete = models.SET_NULL, null = True)
@@ -158,7 +154,7 @@ class Product(models.Model):
     featured            = models.BooleanField(default=False)
     digital             = models.BooleanField(default=False)
     sku                 = ShortUUIDField(unique = True,
-                                         length = 4, 
+                                         length = 4,
                                          prefix ="sku",
                                          max_length = 10,
                                          alphabet="1234567890")
@@ -166,12 +162,12 @@ class Product(models.Model):
     updated             = models.DateTimeField(null = True, blank = True)
     # dont forget to makemigrations and migrate.
     tags                = TaggableManager(blank = True)
-    
-    
-    
+
+
+
     class Meta:
         verbose_name_plural = "Products"
-    
+
     def product_image(self):
         return mark_safe('<img src ="%s" width="50" height="50" />' % (self.image.url))
 
@@ -184,18 +180,18 @@ class Product(models.Model):
 
 
 class ProductImages(models.Model):
-    images              = models.ImageField(upload_to="product-images", 
+    images              = models.ImageField(upload_to="product-images",
                                             default="product.jpg")
     product             = models.ForeignKey(Product, related_name = "p_images",on_delete = models.SET_NULL, null = True)
     date                = models.DateTimeField(auto_now_add = True)
-    
+
     class Meta:
         verbose_name_plural = "Product Images"
 
 
 class CartOrder(models.Model):
     user                = models.ForeignKey(User, on_delete = models.CASCADE)
-    price               = models.DecimalField(max_digits=9999999999999999, 
+    price               = models.DecimalField(max_digits=9999999999999999,
                                               decimal_places = 2,
                                               default = "1.99")
     paid_status         = models.BooleanField(default=False)
@@ -203,8 +199,8 @@ class CartOrder(models.Model):
     product_status      = models.CharField(choices = STATUS_CHOICE,
                                            max_length = 30,
                                            default="Processing")
-    
-    
+
+
     class Meta:
         verbose_name_plural = "Cart Order"
 
@@ -221,15 +217,15 @@ class CartOrderItems(models.Model):
      qty = models.IntegerField(default = 0)
      price = models.DecimalField(max_digits=9999999999999999, decimal_places = 2, default = "1.99")
      total = models.DecimalField(max_digits=9999999999999999, decimal_places = 2, default = "1.99")
-     
-     
+
+
      class Meta:
         verbose_name_plural = "Cart Order Items"
-        
-        
+
+
      def order_img(self):
         return mark_safe('<img src ="/media/%s" width="50" height="50" />' % (self.image))
-     
+
 
 
 class ProductReview(models.Model):
@@ -238,45 +234,43 @@ class ProductReview(models.Model):
     review = models.TextField()
     rating = models.IntegerField(choices = RATING, default = None)
     date = models.DateTimeField(auto_now_add = True)
-    
-    
+
+
     class Meta:
         verbose_name_plural = "Product Reviews"
-    
+
 
     def __str__(self):
         return self.product.title
-    
+
     def get_rating(self):
         return self.rating
-    
-    
-    
-    
+
+
+
+
 class WishList(models.Model):
     user = models.ForeignKey(User, on_delete = models.SET_NULL, null = True)
     product = models.ForeignKey(Product, on_delete = models.SET_NULL, null = True)
     date = models.DateTimeField(auto_now_add = True)
-    
-    
+
+
     class Meta:
         verbose_name_plural = "wishlist"
-    
+
 
     def __str__(self):
         return self.product.title
-    
-    
-    
-    
-    
+
+
+
+
+
 class Address(models.Model):
     user = models.ForeignKey(User, on_delete = models.SET_NULL, null = True)
     address = models.CharField(max_length = 100,  null = True)
     status = models.BooleanField(default = False)
-    
-    
+
+
     class Meta:
         verbose_name_plural = "Address"
-    
-
