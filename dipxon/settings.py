@@ -24,15 +24,15 @@ STATIC_DIR = BASE_DIR / 'static'
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = '3dd3d9a282de867fad1aa28c4298c614'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = os.environ.get("DEBUG", "False").lower == "true"
 
 
-DEBUG = "True"
+DEBUG = os.environ.get("DEBUG", "True")=="True"
 
-ALLOWED_HOSTS = ['dipxon-version-web-test.onrender.com', "*"]
+ALLOWED_HOSTS = ['localhost','dipxon-version-web-test.onrender.com', "*"]
 
 CSRF_TRUSTED_ORIGINS = [
     'dipxon-version-web-test.onrender.com'
@@ -96,15 +96,20 @@ WSGI_APPLICATION = 'dipxon.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+if not DEBUG:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+        }
 
-database_url = os.environ.get("DATABASE_URL")
-DATABASES["default"] = dj_database_url.parse(database_url)
+
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
 
 
 # Password validation
