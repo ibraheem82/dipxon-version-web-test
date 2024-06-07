@@ -32,7 +32,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 DEBUG = "True"
 
-ALLOWED_HOSTS = ['dipxon-version-web-test.onrender.com' "*"]
+ALLOWED_HOSTS = ['dipxon-version-web-test.onrender.com', "*"]
 
 CSRF_TRUSTED_ORIGINS = [
     'dipxon-version-web-test.onrender.com'
